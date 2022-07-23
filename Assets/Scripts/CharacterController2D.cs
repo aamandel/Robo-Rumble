@@ -17,7 +17,9 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private float dashSpeed;
 	private float dashTime;
 	[SerializeField] private float dashDuration;
-	[SerializeField] private bool currDashing = false;
+	[SerializeField] private float dashCooldown;
+	private float dashCDTimer = 0f;
+	private bool currDashing = false;
 
 	const float k_GroundedRadius = .2f;  // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;             // Whether or not the player is grounded.
@@ -183,7 +185,11 @@ public class CharacterController2D : MonoBehaviour
 
     public void useAbilities(bool dashInput)
     {
-        if (dashInput)
+		if(dashCDTimer > 0)
+        {
+			dashCDTimer -= Time.fixedDeltaTime;
+        }
+        if (dashInput && dashCDTimer <= 0)
 			currDashing = true;
 
         if (currDashing)
@@ -194,6 +200,7 @@ public class CharacterController2D : MonoBehaviour
 				dashTime = dashDuration;
 				m_Rigidbody2D.velocity = Vector2.zero;
 				currDashing = false;
+				dashCDTimer = dashCooldown;
             }
             else
             {

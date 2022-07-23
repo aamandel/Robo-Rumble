@@ -30,16 +30,9 @@ public class WeaponController : MonoBehaviour
         if (!cam) { cam = Camera.main; }
     }
 
-    public void SetCam()
+    public void SetCam(Camera newCam)
     {
-        foreach (Player p in PlayerHandler.players)
-        {
-            if (p.GetGO().name == this.gameObject.name)
-            {
-                Debug.Log(p.camera);
-                cam = p.camera;
-            }
-        }
+        cam = newCam;
     }
 
     public void PickupWeapon(Weapon weapon)
@@ -61,6 +54,9 @@ public class WeaponController : MonoBehaviour
         currWeapon.transform.localPosition = -currWeapon.GetHandlePoint().localPosition + new Vector3(handleOffset, 0, 0);
         currWeapon.transform.localRotation = Quaternion.identity;
         currWeapon.transform.localScale = new Vector3(Mathf.Abs(currWeapon.transform.localScale.x), Mathf.Abs(currWeapon.transform.localScale.y), 1);
+        currWeapon.myWeaponController = this;
+        // update ui
+        StaticData.playerUI.SetUI();
     }
 
     public void OnAimInput(InputAction.CallbackContext context)
@@ -133,15 +129,15 @@ public class WeaponController : MonoBehaviour
         return mouseWorldPosition;
     }
 
-    /*private void Update()
+    public Weapon GetWeapon()
     {
-        if (!currWeapon)
-        {
-            return;
-        }
-        if (isFiring)
-        {
-            currWeapon.Shoot();
-        }
-    }*/
+        return currWeapon;
+    }
+
+    public void WeaponDestroyed()
+    {
+        currWeapon = null;
+        StaticData.playerUI.SetUI();
+    }
+
 }

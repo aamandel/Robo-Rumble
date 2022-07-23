@@ -64,7 +64,14 @@ public class PlayerHealthHandler : MonoBehaviour
             invulnerable = true;
             Invoke("CanRespawn", respawnTime - 1f);
             Invoke("Respawn", respawnTime);
-
+            if(StaticData.p1GO == gameObject)
+            {
+                StaticData.p1Lives--;
+            }else if(StaticData.p2GO == gameObject)
+            {
+                StaticData.p2Lives--;
+            }
+            StaticData.playerUI.SetUI();
             //GameObject fx = Instantiate(deathFXPrefab, gameObject.transform.position, gameObject.transform.rotation);
             //Destroy(fx, 2f);
         }

@@ -41,7 +41,6 @@ public class ExplosionController : MonoBehaviour
             bool isPlayer = colliders[i].gameObject.tag == "Player";
             if (isPlayer && !explodedPlayers.Contains(colliders[i].gameObject))
             {
-                Debug.Log("boom");
                 explodedPlayers.Add(colliders[i].gameObject);
                 PlayerHealthHandler PHH = colliders[i].gameObject.GetComponent<PlayerHealthHandler>();
                 if (PHH)

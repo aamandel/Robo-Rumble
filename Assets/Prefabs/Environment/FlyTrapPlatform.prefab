@@ -518,7 +518,7 @@ GameObject:
   - component: {fileID: 2797507259239986047}
   - component: {fileID: 2319358451751560982}
   - component: {fileID: 3822769521775432634}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: FlyTrapPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
-    [SerializeField] private int seed = 42;
+    private int seed;
     [SerializeField] private int worldWidth = 40;
     [SerializeField] private int worldHeight = 20;
     
@@ -14,6 +14,8 @@ public class LevelGenerator : MonoBehaviour
 
     void Start()
     {
+        seed = Random.Range(0, 500);
+        Debug.Log("seed: " + seed);
         Initialize();
     }
 
@@ -23,10 +25,10 @@ public class LevelGenerator : MonoBehaviour
         Random.InitState(seed);
         // set players to positions
         spawnPoints = platformGenerator.GeneratePlatforms(worldSpace, seed);
-        if (PlayerHandler.players.Count > 1 && spawnPoints.Count > 0)
+        if (StaticData.p1GO != null && StaticData.p2GO != null && spawnPoints.Count > 0)
         {
-            PlayerHandler.players[0].GetGO().transform.position = spawnPoints[0];
-            PlayerHandler.players[1].GetGO().transform.position = spawnPoints[spawnPoints.Count - 1];
+            StaticData.p1GO.transform.position = spawnPoints[0];
+            StaticData.p2GO.transform.position = spawnPoints[spawnPoints.Count - 1];
         }
     }
 

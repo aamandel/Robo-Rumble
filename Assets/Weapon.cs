@@ -12,13 +12,40 @@ public class Weapon : MonoBehaviour
     [SerializeField] private float spreadAmount; // bullet spread
     private bool canShoot = true;
     [SerializeField] private int numShots;
-    public GameObject owner;
+    private int currNumShots;
+    private PlayerUIManager playerUI;
+    private GameObject owner;
+    [HideInInspector] public WeaponController myWeaponController;
 
-    
-    //the handle point is the location for the weapon to be held from
+
+    // get the number of shots currently left
+    public int GetCurrShots()
+    {
+        return currNumShots;
+    }
+
+    // get the maximum number of shots
+    public int GetShotCapacity()
+    {
+        return numShots;
+    }
+
+    // the handle point is the location for the weapon to be held from
     public Transform GetHandlePoint()
     {
         return handlePoint;
+    }
+
+    private void Awake()
+    {
+        currNumShots = numShots;
+        playerUI = StaticData.playerUI;
+    }
+
+    private void Start()
+    {
+        currNumShots = numShots;
+        playerUI = StaticData.playerUI;
     }
 
     public void SetOwner(GameObject _owner)
@@ -32,7 +59,7 @@ public class Weapon : MonoBehaviour
         if (!canShoot) { return; }
         canShoot = false;
         Invoke("ResetShoot", recoveryTime);
-        GameObject Projectile = Instantiate(projectilePrefab, muzzlePoint.position, Quaternion.identity, null);
+        GameObject Projectile = Instantiate(projectilePrefab, muzzlePoint.position, muzzlePoint.rotation, null);
         Projectile.GetComponent<Rigidbody2D>().velocity = (muzzlePoint.right + (Vector3.up * (Random.Range(-spreadAmount / 100, spreadAmount/100)))) * launchSpeed;
         Bullet BulletScript = Projectile.GetComponent<Bullet>();
         if (BulletScript)
@@ -40,10 +67,18 @@ public class Weapon : MonoBehaviour
             BulletScript.SetOwner(owner);
         }
 
-        numShots--;
-        if(numShots == 0)
+        currNumShots--;
+        if(currNumShots == 0)
         {
+            if (myWeaponController)
+            {
+                myWeaponController.WeaponDestroyed();
+            }
             Destroy(gameObject);
+        }
+        if (playerUI)
+        {
+            playerUI.SetUI();
         }
     }
 

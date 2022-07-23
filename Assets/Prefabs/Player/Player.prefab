@@ -1270,7 +1270,7 @@ MonoBehaviour:
   jumpCount: 2
   dashSpeed: 50
   dashDuration: 0.15
-  currDashing: 0
+  dashCooldown: 2
   m_FacingRight: 1
   OnLandEvent:
     m_PersistentCalls:
@@ -7392,10 +7392,10 @@ MonoBehaviour:
   rotationSpeed: 4
   hasMaxDistance: 1
   maxDistnace: 10
-  launchToPoint: 0
+  launchToPoint: 1
   launchType: 1
   launchSpeed: 1
-  autoConfigureDistance: 1
+  autoConfigureDistance: 0
   targetDistance: 10
   targetFrequncy: 1
   grapplePoint: {x: 0, y: 0}

@@ -129,10 +129,13 @@ public class TrafficPlatformGenerator : PlatformGenerator
 
         }
 
-        //add spawn platform
-        for (int i = 0; i < 10; i++)
+        //add spawn platform if debug mode
+        if (debugMode)
         {
-            worldSpace[worldWidth / 2 - 4 + i, worldHeight / 2 - 4] = 1;
+            for (int i = 0; i < 10; i++)
+            {
+                worldSpace[worldWidth / 2 - 4 + i, worldHeight / 2 - 4] = 1;
+            }
         }
 
         // add moving platforms

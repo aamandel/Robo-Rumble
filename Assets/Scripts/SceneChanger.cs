@@ -6,22 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    private Button continueButton;
+    public string nextScene;
 
-    private void Awake()
+    public void ChangeScene()
     {
-        continueButton = GetComponent<Button>();
-    }
-    public void ContinueToGame()
-    {
-        SceneManager.LoadScene("Main Game");
-    }
-
-    private void Update()
-    {
-        if( PlayerHandler.GetNumPlayers() == 2)
-        {
-            continueButton.interactable = true;
-        }
+        SceneManager.LoadScene(nextScene);
     }
 }

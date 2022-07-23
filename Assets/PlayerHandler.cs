@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
+using UnityEngine.UI;
 
 public class PlayerHandler : MonoBehaviour
 {
-    public static List<Player> players = new List<Player>();
+    //public static List<Player> players = new List<Player>();
     public Color[] playerColors;
     public GameObject Player1Slot, Player2Slot;
     private static int numPlayers;
+    public Button continueButton;
 
     private void Start()
     {
@@ -49,16 +51,15 @@ public class PlayerHandler : MonoBehaviour
 
         string name = "player " + (numPlayers);
         Debug.Log(name + " joined");
-    }
-
-    public void OnPlayerLeft(PlayerInput i_val)
-    {
-        players.RemoveAll(p => p.gObject == i_val.gameObject);
+        if(numPlayers >= 2)
+        {
+            continueButton.interactable = true;
+        }
     }
 
     //The static function ClearPlayerUI() clears the current UI selection for all 
     //players and should be called before displaying any player specific UI elements
-    public static void ClearPlayerUI()
+    /*public static void ClearPlayerUI()
     {
         foreach (Player p in players)
         {
@@ -66,7 +67,7 @@ public class PlayerHandler : MonoBehaviour
             bs.playerRoot = null;
             bs.SetSelectedGameObject(null);
         }
-    }
+    }*/
 }
 
 public class Player
