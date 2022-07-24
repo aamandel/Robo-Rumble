@@ -161,11 +161,11 @@ MonoBehaviour:
   handlePoint: {fileID: 3032456856627902439}
   muzzlePoint: {fileID: 3032456856690842140}
   projectilePrefab: {fileID: 6670776554637430655, guid: 8ba4b8c10d60bc64baee85735794fe63, type: 3}
-  launchSpeed: 10
-  recoveryTime: 0.02
-  spreadAmount: 1
+  launchSpeed: 20
+  recoveryTime: 0.019
+  spreadAmount: 10
   numShots: 500
-  owner: {fileID: 0}
+  myWeaponController: {fileID: 0}
 --- !u!61 &3032456856865133058
 BoxCollider2D:
   m_ObjectHideFlags: 0

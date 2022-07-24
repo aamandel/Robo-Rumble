@@ -339,7 +339,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b787a030ef7da040b85c2fc55475182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  continueButton: {fileID: 1880054213}
   nextScene: Traffic
 --- !u!1 &652142430
 GameObject:

@@ -8,10 +8,12 @@ public class Bullet : MonoBehaviour
     public GameObject particles;
     public GameObject OptionalImpactFX;
     public float maxExistTime = 5f;
+    private bool hitSomething;
 
     private void Awake()
     {
         Destroy(gameObject, maxExistTime);
+        hitSomething = false;
     }
 
     public void SetOwner(GameObject _owner)
@@ -25,6 +27,10 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (hitSomething)
+        {
+            return;
+        }
         PlayerHealthHandler PHH = collision.gameObject.GetComponent<PlayerHealthHandler>();
         if (PHH)
         {
@@ -42,7 +48,9 @@ public class Bullet : MonoBehaviour
             particles.transform.SetParent(null);
             Destroy(particles.gameObject, 5f);
             Destroy(gameObject);
+            hitSomething = true;
         }
+        
         
     }
 }

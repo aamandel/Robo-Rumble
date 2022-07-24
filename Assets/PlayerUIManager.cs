@@ -60,14 +60,14 @@ public class PlayerUIManager : MonoBehaviour
         {
             //EndRoundUI(StaticData.p2GO.name, StaticData.p1GO.name);
             EndRoundUI("Player2", "Player1");
-            Time.timeScale = 0.25f;
+            Time.timeScale = 0.5f;
             gameOver = true;
         }
         if (StaticData.p2Lives <= 0 && !gameOver)
         {
             //EndRoundUI(StaticData.p1GO.name, StaticData.p2GO.name);
             EndRoundUI("Player1", "Player2");
-            Time.timeScale = 0.25f;
+            Time.timeScale = 0.5f;
             gameOver = true;
         }
     }
@@ -137,7 +137,7 @@ public class PlayerUIManager : MonoBehaviour
         };
         roundOverAnimator.SetBool("RoundIsOver", true);
         roundOverTMP.text = roundOverMessages[Random.Range(0, roundOverMessages.Length)];
-        Invoke("LoadNextScene", 3f);
+        Invoker.InvokeDelayed(LoadNextScene, 6f);
     }
 
     private void LoadNextScene()

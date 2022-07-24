@@ -46,12 +46,7 @@ public class RagdollEnabler : MonoBehaviour
 
     public void EnableRagdoll()
     {
-        animator.SetBool("isDead", true);
-        Invoke("DelayEnable", 0.1f);
-    }
-
-    private void DelayEnable()
-    {
+        Vector2 oldvelocity = rb.velocity;
         animator.enabled = false;
         for (int i = 0; i < bones.Count; i++)
         {
@@ -64,6 +59,7 @@ public class RagdollEnabler : MonoBehaviour
         foreach (Rigidbody2D rb in ragdollRBs)
         {
             rb.isKinematic = false;
+            rb.velocity = oldvelocity;
         }
         foreach (HingeJoint2D hj in ragdollHingJoints)
         {

@@ -20,7 +20,6 @@ public class PlayerHealthHandler : MonoBehaviour
     public RagdollEnabler ragdollEnabler;
 
     //player components
-    public List<SpriteRenderer> spriteRenderers;
     public CircleCollider2D circleCollider2D;
     public BoxCollider2D boxCollider2D1, boxCollider2D2;
 
@@ -104,11 +103,6 @@ public class PlayerHealthHandler : MonoBehaviour
             }
             gameObject.transform.position = position;
 
-            //re-enable player components
-            foreach (SpriteRenderer spriteRenderer in spriteRenderers)
-            {
-                spriteRenderer.enabled = true;
-            }
             circleCollider2D.enabled = true;
             boxCollider2D1.enabled = true;
             boxCollider2D2.enabled = true;

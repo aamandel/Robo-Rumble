@@ -6,6 +6,8 @@ public class PlayerEnemyArrow : MonoBehaviour
 {
     public bool player1 = true;
     private GameObject myGO, enemyGO;
+    public float minDisplayDist = 10f;
+    public SpriteRenderer arrowSprite;
 
     private void Start()
     {
@@ -23,9 +25,18 @@ public class PlayerEnemyArrow : MonoBehaviour
 
     private void Update()
     {
+        if(!myGO || !enemyGO)
+        {
+            return;
+        }
         gameObject.transform.position = myGO.transform.position;
-        Quaternion rotation = Quaternion.LookRotation(enemyGO.transform.position - transform.position, transform.TransformDirection(Vector3.up));
-        transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
-        //transform.LookAt(enemyGO.transform, Vector3.right);
+        Vector3 distVector = enemyGO.transform.position - transform.position;
+        if(distVector.magnitude < minDisplayDist)
+        {
+            arrowSprite.enabled = false;
+            return;
+        }
+        arrowSprite.enabled = true;
+        transform.right = distVector;
     }
 }

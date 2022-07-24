@@ -4830,7 +4830,6 @@ GameObject:
   - component: {fileID: 9222679841204978766}
   - component: {fileID: 9222679841204978765}
   - component: {fileID: 9222679841204978764}
-  - component: {fileID: 7138841091500122061}
   m_Layer: 3
   m_Name: GravityGun
   m_TagString: Weapon
@@ -4874,7 +4873,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: eb244d0f2a302e24298d6aa14189345d, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4951,23 +4950,7 @@ MonoBehaviour:
   recoveryTime: 1
   spreadAmount: 0
   numShots: 5
-  owner: {fileID: 0}
---- !u!114 &7138841091500122061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9222679841204978761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shaderTypes: 0
-  normalStrength: 5
-  normalSmoothing: 1
-  computingNormal: 0
+  myWeaponController: {fileID: 0}
 --- !u!1 &9222679841837340739
 GameObject:
   m_ObjectHideFlags: 0
