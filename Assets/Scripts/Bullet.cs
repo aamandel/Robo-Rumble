@@ -6,8 +6,10 @@ public class Bullet : MonoBehaviour
 {
     public float damage;
     public GameObject particles;
-    public GameObject OptionalImpactFX;
+    public GameObject optionalImpactFX;
+    public bool optionalFXHasPhysics = false;
     public float maxExistTime = 5f;
+    public float optionalImpactExistTime = 5f;
     private bool hitSomething;
 
     private void Awake()
@@ -37,10 +39,14 @@ public class Bullet : MonoBehaviour
             PHH.ApplyDamage(new DamageParams(damage, "None"));
         }
 
-        if (OptionalImpactFX)
+        if (optionalImpactFX)
         {
-            GameObject fx = Instantiate(OptionalImpactFX, transform.position, transform.rotation);
-            Destroy(fx, 5f);
+            GameObject fx = Instantiate(optionalImpactFX, transform.position, transform.rotation);
+            if (optionalFXHasPhysics)
+            {
+                fx.GetComponent<Rigidbody2D>().velocity = gameObject.GetComponent<Rigidbody2D>().velocity;
+            }
+            Destroy(fx, optionalImpactExistTime);
         }
 
         if(collision.gameObject.tag != "Weapon")

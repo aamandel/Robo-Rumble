@@ -25,6 +25,9 @@ public class PlayerHealthHandler : MonoBehaviour
 
     //spawnpoints
     private LevelGenerator levelGenerator;
+
+    //Health bar
+    public HealthBar healthBar;
     
 
     private void Start()
@@ -35,7 +38,7 @@ public class PlayerHealthHandler : MonoBehaviour
         {
             levelGenerator = lvlGen.GetComponent<LevelGenerator>();
         }
-        
+        healthBar.SetBar(maxHP);
     }
 
     private void FixedUpdate()
@@ -54,6 +57,8 @@ public class PlayerHealthHandler : MonoBehaviour
         {
             this.currHP -= DP.GetDamage();
         }
+
+        healthBar.SetBar(currHP);
 
         //Death Occured
         if (currHP <= 0)
@@ -94,6 +99,7 @@ public class PlayerHealthHandler : MonoBehaviour
 
             //reset health, position and velocity
             currHP = maxHP;
+            healthBar.SetBar(maxHP);
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
             Vector3 position = new Vector3(0, 0, 0);
             if (levelGenerator)

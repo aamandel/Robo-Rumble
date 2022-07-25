@@ -147,8 +147,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 50
   particles: {fileID: 9053978152675425828}
-  OptionalImpactFX: {fileID: 1748698132380627669, guid: dafa242f0c16e7d43b1c9dd326bf6c7e, type: 3}
+  optionalImpactFX: {fileID: 1748698132380627669, guid: dafa242f0c16e7d43b1c9dd326bf6c7e, type: 3}
+  optionalFXHasPhysics: 1
   maxExistTime: 5
+  optionalImpactExistTime: 10
 --- !u!1 &9053978152675425828
 GameObject:
   m_ObjectHideFlags: 0

@@ -4951,5 +4951,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 100
   particles: {fileID: 5022102521513214839}
-  OptionalImpactFX: {fileID: 0}
+  optionalImpactFX: {fileID: 4531214707885362406, guid: dda5ecb2ccda7fe45a718cbbddad7b43, type: 3}
+  optionalFXHasPhysics: 0
   maxExistTime: 5
+  optionalImpactExistTime: 5

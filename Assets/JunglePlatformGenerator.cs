@@ -39,7 +39,7 @@ public class JunglePlatformGenerator : PlatformGenerator
             SpawnPlatform(0, worldWidth / 2, currY);
             currY -= 4;
         }
-        SpawnPlatform(5, worldWidth / 2, currY);
+        SpawnPlatform(6, worldWidth / 2, currY);
 
 
         // return spawns

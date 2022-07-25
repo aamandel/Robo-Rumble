@@ -14,6 +14,11 @@ public class WeaponController : MonoBehaviour
     private bool isFiring = false;
     private Vector3 targetDirection = Vector3.zero;
     private Vector3 mouseWorldPosition = Vector3.zero;
+    public Animator animator;
+    public Transform punchPoint;
+    public LayerMask meleeLayers;
+    public float meleeDamage;
+    public float meleeKnockback;
 
     public GameObject GetCurrentWeapon()
     {
@@ -85,6 +90,10 @@ public class WeaponController : MonoBehaviour
         }
         if (!currWeapon)
         {
+            if (isFiring && !animator.GetBool("IsJumping") && !animator.GetBool("IsDoubleJumping"))
+            {
+                animator.SetBool("IsMeleeing", true);
+            }
             return;
         }
         float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
@@ -138,6 +147,31 @@ public class WeaponController : MonoBehaviour
     {
         currWeapon = null;
         StaticData.playerUI.SetUI();
+    }
+
+    public void Melee()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(punchPoint.position, 0.2f, meleeLayers);
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if (colliders[i].gameObject.tag == "Player" && colliders[i].gameObject != gameObject)
+            {
+                PlayerHealthHandler PHH = colliders[i].gameObject.GetComponent<PlayerHealthHandler>();
+                PHH.ApplyDamage(new DamageParams(meleeDamage, null));
+                float KB = meleeKnockback;
+                KB *= 100;
+                ForceMode2D mode = ForceMode2D.Force;
+                if(PHH.GetHealth() > 0)
+                {
+                    colliders[i].gameObject.GetComponent<PlayerMovement>().enabled = false;
+                    colliders[i].gameObject.GetComponent<CharacterController2D>().ResetPlayerMovement(0.1f);
+                }
+                colliders[i].attachedRigidbody.AddForce((colliders[i].gameObject.transform.position - gameObject.transform.position + Vector3.up/4).normalized * KB, mode);
+                
+                break;
+            }
+        }
+        animator.SetBool("IsMeleeing", false);
     }
 
 }
