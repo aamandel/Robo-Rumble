@@ -339,7 +339,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b787a030ef7da040b85c2fc55475182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: Traffic
+  trafficScene: 1
+  jungleTempleScene: 1
+  bananaScene: 0
+  chanceOfBanana: 0.1
 --- !u!1 &652142430
 GameObject:
   m_ObjectHideFlags: 0

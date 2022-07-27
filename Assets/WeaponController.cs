@@ -56,12 +56,23 @@ public class WeaponController : MonoBehaviour
         currWeapon.SetOwner(gameObject);
 
         currWeapon.transform.parent = weaponArm.transform;
-        currWeapon.transform.localPosition = -currWeapon.GetHandlePoint().localPosition + new Vector3(handleOffset, 0, 0);
+        currWeapon.transform.localPosition = (-currWeapon.GetHandlePoint().localPosition)*currWeapon.transform.localScale.x  + new Vector3(handleOffset, 0, 0);
         currWeapon.transform.localRotation = Quaternion.identity;
         currWeapon.transform.localScale = new Vector3(Mathf.Abs(currWeapon.transform.localScale.x), Mathf.Abs(currWeapon.transform.localScale.y), 1);
         currWeapon.myWeaponController = this;
         // update ui
         StaticData.playerUI.SetUI();
+    }
+
+    public void DropWeapon()
+    {
+        if (currWeapon)
+        {
+            currWeapon.transform.SetParent(null);
+            currWeapon.transform.rotation = Quaternion.identity;
+            currWeapon.transform.localScale = new Vector3(currWeapon.transform.localScale.x, currWeapon.transform.localScale.x, 1);
+        }
+        currWeapon = null;
     }
 
     public void OnAimInput(InputAction.CallbackContext context)

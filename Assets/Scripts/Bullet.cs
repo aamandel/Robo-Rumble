@@ -6,11 +6,15 @@ public class Bullet : MonoBehaviour
 {
     public float damage;
     public GameObject particles;
+    public bool particlesDieOnImpact = false;
+    public bool particlesWorldPositionStays = true;
     public GameObject optionalImpactFX;
     public bool optionalFXHasPhysics = false;
     public float maxExistTime = 5f;
     public float optionalImpactExistTime = 5f;
     private bool hitSomething;
+    public StunPlayer optionalStunner;
+
 
     private void Awake()
     {
@@ -37,6 +41,10 @@ public class Bullet : MonoBehaviour
         if (PHH)
         {
             PHH.ApplyDamage(new DamageParams(damage, "None"));
+            if (optionalStunner && PHH.GetHealth() > 0)
+            {
+                optionalStunner.Stun(collision.gameObject);
+            }
         }
 
         if (optionalImpactFX)
@@ -51,7 +59,11 @@ public class Bullet : MonoBehaviour
 
         if(collision.gameObject.tag != "Weapon")
         {
-            particles.transform.SetParent(null);
+            particles.transform.SetParent(null, particlesWorldPositionStays);
+            if (particlesDieOnImpact && particles.GetComponent<ParticleSystem>() != null)
+            {
+                particles.GetComponent<ParticleSystem>().Stop();
+            }
             Destroy(particles.gameObject, 5f);
             Destroy(gameObject);
             hitSomething = true;

@@ -6,6 +6,8 @@ public class ExplosionController : MonoBehaviour
 {
     public GameObject explosionPrefab;
     public float explosionDelay;
+    public bool explodeOnAnyImpact = false;
+    public float timeBeforeUnlockExplode = 0.1f;
     public float damageRadius;
     public LayerMask damageLayers;
     public float damageAmount;
@@ -16,15 +18,16 @@ public class ExplosionController : MonoBehaviour
     {
         canExplode = false;
         Invoke("Explode", explosionDelay);
-        Invoke("UnlockExplode", 0.1f);
+        Invoke("UnlockExplode", timeBeforeUnlockExplode);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         PlayerHealthHandler PHH = collision.gameObject.GetComponent<PlayerHealthHandler>();
-        if (PHH && canExplode)
+        if ((PHH || explodeOnAnyImpact) && canExplode)
         {
             Explode();
+            canExplode = false;
         }
     }
 
@@ -41,6 +44,7 @@ public class ExplosionController : MonoBehaviour
             bool isPlayer = colliders[i].gameObject.tag == "Player";
             if (isPlayer && !explodedPlayers.Contains(colliders[i].gameObject))
             {
+                
                 explodedPlayers.Add(colliders[i].gameObject);
                 PlayerHealthHandler PHH = colliders[i].gameObject.GetComponent<PlayerHealthHandler>();
                 if (PHH)

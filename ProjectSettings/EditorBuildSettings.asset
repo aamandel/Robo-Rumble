@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Jungle Temple.unity
     guid: 1506c8ba4e58f1644a89fd1fe9a5ee03
+  - enabled: 1
+    path: Assets/Scenes/Banana.unity
+    guid: 6efbf4fd42db70b408f2b775543c1a26
   m_configObjects: {}

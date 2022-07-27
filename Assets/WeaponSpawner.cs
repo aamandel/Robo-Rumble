@@ -16,7 +16,7 @@ public class WeaponSpawner : MonoBehaviour
     private void Awake()
     {
         epicFX.SetActive(false);
-        Spawn();
+        Invoke("Spawn", 0.1f);
         StartCoroutine(UpdateSpawner());
     }
 
@@ -24,6 +24,7 @@ public class WeaponSpawner : MonoBehaviour
     {
         while (gameObject.activeInHierarchy)
         {
+            yield return new WaitForSeconds(updateRate);
             bool canSpawn = true;
             Collider2D[] colliders = Physics2D.OverlapCircleAll(spawnPoint.position, 0.5f, weaponLayers);
             for (int i = 0; i < colliders.Length; i++)
@@ -39,8 +40,6 @@ public class WeaponSpawner : MonoBehaviour
                 yield return new WaitForSeconds(timeBetweenSpawns);
                 Spawn();
             }
-            
-            yield return new WaitForSeconds(updateRate);
         }
     }
 

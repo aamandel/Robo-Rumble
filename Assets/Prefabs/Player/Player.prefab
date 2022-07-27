@@ -383,6 +383,7 @@ MonoBehaviour:
   dashDuration: 0.15
   dashCooldown: 2
   m_FacingRight: 1
+  healthBar: {fileID: 6146087162436138528}
   OnLandEvent:
     m_PersistentCalls:
       m_Calls:
@@ -763,6 +764,7 @@ MonoBehaviour:
   circleCollider2D: {fileID: 1251220990990665386}
   boxCollider2D1: {fileID: 1251220990990665387}
   boxCollider2D2: {fileID: 1251220990990665388}
+  weaponController: {fileID: 6754493261852137513}
   healthBar: {fileID: 6146087162436138528}
 --- !u!114 &5304636218151432743
 MonoBehaviour:

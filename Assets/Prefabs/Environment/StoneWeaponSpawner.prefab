@@ -91,7 +91,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4836399984506504428}
-  - component: {fileID: 4836399984506504431}
   - component: {fileID: 5625568383772613918}
   - component: {fileID: 3324706433875218722}
   - component: {fileID: 2936629377208042827}
@@ -121,57 +120,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &4836399984506504431
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4836399984506504430}
-  m_Enabled: 0
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -605490269
-  m_SortingLayer: 3
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 05dd1804df462d24584d7a8add81a1b8, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!61 &5625568383772613918
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -297,6 +245,7 @@ MonoBehaviour:
   - {fileID: 3860972554861810970, guid: bfe98d0855f20b74087f4b23cc07d245, type: 3}
   - {fileID: 3032456856865133062, guid: 7388f06db68a9da40a7624f5f0a0b87b, type: 3}
   - {fileID: 6498800808993586349, guid: ae45ae3b5b577a043ba51110948ee2b0, type: 3}
+  - {fileID: 1636790182628868449, guid: a8248c7078f3dc045851ab947deecf65, type: 3}
   epicWeaponPrefabs:
   - {fileID: 9222679841204978761, guid: d271e8658d8a36f48b819d82c01445a2, type: 3}
   - {fileID: 6397003635176806654, guid: 02e16c13122631f479586ff9a6fe8c34, type: 3}

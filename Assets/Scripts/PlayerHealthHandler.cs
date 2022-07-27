@@ -22,6 +22,7 @@ public class PlayerHealthHandler : MonoBehaviour
     //player components
     public CircleCollider2D circleCollider2D;
     public BoxCollider2D boxCollider2D1, boxCollider2D2;
+    public WeaponController weaponController;
 
     //spawnpoints
     private LevelGenerator levelGenerator;
@@ -76,6 +77,7 @@ public class PlayerHealthHandler : MonoBehaviour
                 StaticData.p2Lives--;
             }
             StaticData.playerUI.SetUI();
+            weaponController.DropWeapon();
             //GameObject fx = Instantiate(deathFXPrefab, gameObject.transform.position, gameObject.transform.rotation);
             //Destroy(fx, 2f);
         }

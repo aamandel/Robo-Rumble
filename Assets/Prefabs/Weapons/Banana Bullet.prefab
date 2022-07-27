@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5022102521513214839}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.158, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 8513161154062309063}
@@ -40,7 +40,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5022102521513214839}
   serializedVersion: 7
-  lengthInSec: 0.5
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -115,7 +115,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -168,7 +168,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1303,8 +1303,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.990566, g: 0.85273033, b: 0, a: 0}
-        key1: {r: 0.990566, g: 0.85273033, b: 0, a: 1}
+        key0: {r: 1, g: 0.92147064, b: 0.4481132, a: 0.7058824}
+        key1: {r: 0.990566, g: 0.85273033, b: 0, a: 0}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -1319,8 +1319,8 @@ ParticleSystem:
         ctime5: 0
         ctime6: 0
         ctime7: 0
-        atime0: 0
-        atime1: 31804
+        atime0: 10601
+        atime1: 65535
         atime2: 65535
         atime3: 0
         atime4: 0
@@ -1329,7 +1329,7 @@ ParticleSystem:
         atime7: 0
         m_Mode: 0
         m_NumColorKeys: 2
-        m_NumAlphaKeys: 3
+        m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4817,6 +4817,7 @@ GameObject:
   - component: {fileID: 864745433277861260}
   - component: {fileID: 3518072602565431125}
   - component: {fileID: 5560223225438918388}
+  - component: {fileID: -791871277710303228}
   m_Layer: 0
   m_Name: Banana Bullet
   m_TagString: Untagged
@@ -4833,7 +4834,7 @@ Transform:
   m_GameObject: {fileID: 8465085811564472667}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_Children:
   - {fileID: 4789084572142848516}
   m_Father: {fileID: 0}
@@ -4949,9 +4950,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cffda202954044c43bb1a2efad33b8cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 100
+  damage: 50
   particles: {fileID: 5022102521513214839}
+  particlesDieOnImpact: 1
   optionalImpactFX: {fileID: 4531214707885362406, guid: dda5ecb2ccda7fe45a718cbbddad7b43, type: 3}
   optionalFXHasPhysics: 0
   maxExistTime: 5
   optionalImpactExistTime: 5
+--- !u!114 &-791871277710303228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8465085811564472667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f421da21553a6674989fb29422e19265, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 7868581327708149202, guid: 4d4fcad256e635b4da8fb551d87f0b1a, type: 3}
+  explosionDelay: 10
+  explodeOnAnyImpact: 1
+  timeBeforeUnlockExplode: 0.01
+  damageRadius: 5
+  damageLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  damageAmount: 25
+  explosionForce: 75

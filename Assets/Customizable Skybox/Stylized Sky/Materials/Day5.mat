@@ -22,17 +22,18 @@ Material:
     m_Floats:
     - _HorizonLineContribution: 0
     - _HorizonLineExponent: 1
-    - _SkyGradientExponent: 3
+    - _SkyGradientExponent: 4
     - _SunDiscContribution: 1
     - _SunDiscExponent: 100000
     - _SunDiscMultiplier: 1000
-    - _SunHaloContribution: 0.5
+    - _SunHaloContribution: 0.351
     - _SunHaloExponent: 250
     - _Title: 0
     - __dirty: 0
     m_Colors:
     - _HorizonLineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SkyGradientBottom: {r: 0.7058823, g: 1, b: 0.939148, a: 1}
+    - _SkyGradientBottom: {r: 0.37824848, g: 0.5810027, b: 0.9433962, a: 1}
     - _SkyGradientTop: {r: 0.043137237, g: 0.7294118, b: 0.7411765, a: 1}
-    - _SunDiscColor: {r: 1, g: 0.9953347, b: 0.8308824, a: 1}
-    - _SunHaloColor: {r: 1, g: 0.91379315, b: 0.63235295, a: 1}
+    - _SunDiscColor: {r: 1, g: 1, b: 1, a: 0}
+    - _SunHaloColor: {r: 0.98539704, g: 1, b: 0.5330188, a: 1}
+  m_BuildTextureStacks: []

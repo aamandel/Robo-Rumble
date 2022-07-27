@@ -238,6 +238,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spinSpeed: 100
+  switchesDirections: 1
+  maxTimeBetweenSwitches: 30
 --- !u!1 &7965618571889526519
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,13 +856,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96bee3ee6061c2945adf6843ced0fa6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenSpawns: 100
+  timeBetweenSpawns: 15
   spawnPoint: {fileID: 7965618572663665574}
   weaponPrefabs:
   - {fileID: 8915533035637256382, guid: a6bdeaf1421dc064da3b41d635e9f091, type: 3}
+  epicWeaponPrefabs: []
+  epicFX: {fileID: 9127161753698729769, guid: 4f0cf6633e4240c4798e8530856cad4f, type: 3}
+  chanceOfEpic: 0
   weaponLayers:
     serializedVersion: 2
     m_Bits: 8
+  updateRate: 0.5
 --- !u!1 &7965618572663665573
 GameObject:
   m_ObjectHideFlags: 0

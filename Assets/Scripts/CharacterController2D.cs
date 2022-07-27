@@ -30,6 +30,9 @@ public class CharacterController2D : MonoBehaviour
 	private Vector3 m_Velocity = Vector3.zero;
 	private bool m_UncrouchPermitted = true;
 
+	// healthbar to ensure it is not inverted when player switches directions
+	public HealthBar healthBar;
+
 	[Header("Events")]
 	[Space]
 
@@ -76,6 +79,7 @@ public class CharacterController2D : MonoBehaviour
 
 	public void Move(float move, bool crouch, bool jump)
 	{
+
 		bool wasGrounded = m_Grounded;
 		m_Grounded = false;
 
@@ -225,7 +229,9 @@ public class CharacterController2D : MonoBehaviour
 		// Switch the way the player is labelled as facing.
 		m_FacingRight = !m_FacingRight;
 
+		healthBar.transform.SetParent(null);
 		transform.Rotate(0f, 180f, 0f);
+		healthBar.transform.SetParent(gameObject.transform);
 	}
 
 	// function to reset player movement after a stun
