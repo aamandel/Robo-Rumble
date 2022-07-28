@@ -12,6 +12,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private float spreadAmount; // bullet spread
     private bool canShoot = true;
     [SerializeField] private int numShots;
+    [SerializeField] private bool infiniteAmmo = false;
     private int currNumShots;
     private PlayerUIManager playerUI;
     private GameObject owner;
@@ -62,11 +63,15 @@ public class Weapon : MonoBehaviour
         GameObject Projectile = Instantiate(projectilePrefab, muzzlePoint.position, muzzlePoint.rotation, null);
         Projectile.GetComponent<Rigidbody2D>().velocity = (muzzlePoint.right + (Vector3.up * (Random.Range(-spreadAmount / 100, spreadAmount/100)))) * launchSpeed;
         Bullet BulletScript = Projectile.GetComponent<Bullet>();
-        if (BulletScript)
+        if (BulletScript && owner)
         {
             BulletScript.SetOwner(owner);
         }
 
+        if (infiniteAmmo)
+        {
+            return;
+        }
         currNumShots--;
         if(currNumShots == 0)
         {
