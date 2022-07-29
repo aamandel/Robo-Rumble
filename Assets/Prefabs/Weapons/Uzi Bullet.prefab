@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8356012497808573997}
   - component: {fileID: 5702683163797718260}
   - component: {fileID: 3665743092144151893}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Uzi Bullet
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,10 +147,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   particles: {fileID: 4198660907054811350}
+  particlesDieOnImpact: 0
+  particlesWorldPositionStays: 1
   optionalImpactFX: {fileID: 4531214707885362406, guid: dda5ecb2ccda7fe45a718cbbddad7b43, type: 3}
   optionalFXHasPhysics: 0
   maxExistTime: 5
   optionalImpactExistTime: 5
+  optionalStunner: {fileID: 0}
 --- !u!1 &4198660907054811350
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,7 +165,7 @@ GameObject:
   - component: {fileID: 4431695349116109221}
   - component: {fileID: 2204318922620898461}
   - component: {fileID: 3935087542138961178}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}

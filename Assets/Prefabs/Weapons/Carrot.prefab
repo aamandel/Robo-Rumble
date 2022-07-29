@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 4498270559038591027}
   - component: {fileID: 2048968165908434004}
   - component: {fileID: 3727939466988586301}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Carrot
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 4312675597516399536}
   - component: {fileID: 8148905391871067871}
   - component: {fileID: 40153033232133434}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}

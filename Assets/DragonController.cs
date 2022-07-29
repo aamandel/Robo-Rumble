@@ -26,16 +26,30 @@ public class DragonController : MonoBehaviour
 
     public List<GameObject> bodyParts = new List<GameObject>();
 
+    private bool facingRight = true;
+    public float maxResetDist = 70f;
+    public float minResetDist = 40f;
+
     private void Start()
     {
         prevPos = rootBone.transform.position;
+        facingRight = true;
     }
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (facingRight)
+        {
+            rootBone.transform.position += transform.up * Mathf.Sin(Time.time * verticalFlySpeed) * magnitude + (transform.right * flySpeed);
+            rootBone.transform.right = (prevPos - rootBone.transform.position).normalized;
+        }
+        else
+        {
+            rootBone.transform.position += transform.up * Mathf.Sin(Time.time * verticalFlySpeed) * magnitude - (transform.right * flySpeed);
+            rootBone.transform.right = -(prevPos - rootBone.transform.position).normalized;
+        }
         
-        rootBone.transform.position += transform.up * Mathf.Sin(Time.time * verticalFlySpeed) * magnitude + (transform.right * flySpeed);
-        rootBone.transform.right = (prevPos - rootBone.transform.position).normalized;
+        
         if(rootBone.transform.eulerAngles.z == 0)
         {
             rootBone.transform.eulerAngles = new Vector3(0, 0, -180);
@@ -61,9 +75,12 @@ public class DragonController : MonoBehaviour
         // TODO: turn around
         if (rootBone.transform.localPosition.x > 40f)
         {
-            rootBone.transform.localPosition = new Vector3(-40f, rootBone.transform.localPosition.y, rootBone.transform.localPosition.z);
-            
-            //transform.Rotate(0, 180f, 0f);
+            float dist = Random.Range(minResetDist, maxResetDist);
+            rootBone.transform.localPosition = new Vector3(-dist, rootBone.transform.localPosition.y, rootBone.transform.localPosition.z);
+
+            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, 1);
+            facingRight = !facingRight;
+            Flame.gameObject.transform.right = -Flame.gameObject.transform.right;
         }
 
         prevPos = rootBone.transform.position;
@@ -110,7 +127,7 @@ public class DragonController : MonoBehaviour
         while( timePassed < duration)
         {
             float angle = (newAngle/duration) * Time.deltaTime;
-            bone.transform.rotation *= Quaternion.AngleAxis(angle, Vector3.forward);
+            bone.transform.localRotation *= Quaternion.AngleAxis(angle, Vector3.forward);
 
             timePassed += Time.deltaTime;
             yield return new WaitForEndOfFrame();

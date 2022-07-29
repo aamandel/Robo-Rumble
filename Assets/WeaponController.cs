@@ -55,7 +55,7 @@ public class WeaponController : MonoBehaviour
         currWeapon = weapon;
         currWeapon.SetOwner(gameObject);
 
-        currWeapon.transform.parent = weaponArm.transform;
+        currWeapon.gameObject.transform.SetParent(weaponArm.transform);
         currWeapon.transform.localPosition = (-currWeapon.GetHandlePoint().localPosition)*currWeapon.transform.localScale.x  + new Vector3(handleOffset, 0, 0);
         currWeapon.transform.localRotation = Quaternion.identity;
         currWeapon.transform.localScale = new Vector3(Mathf.Abs(currWeapon.transform.localScale.x), Mathf.Abs(currWeapon.transform.localScale.y), 1);

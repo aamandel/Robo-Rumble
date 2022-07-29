@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4789084572142848516}
   - component: {fileID: 7017140496875931452}
   - component: {fileID: 5290191614506972859}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4818,9 +4818,9 @@ GameObject:
   - component: {fileID: 3518072602565431125}
   - component: {fileID: 5560223225438918388}
   - component: {fileID: -791871277710303228}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Banana Bullet
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4953,10 +4953,12 @@ MonoBehaviour:
   damage: 50
   particles: {fileID: 5022102521513214839}
   particlesDieOnImpact: 1
+  particlesWorldPositionStays: 1
   optionalImpactFX: {fileID: 4531214707885362406, guid: dda5ecb2ccda7fe45a718cbbddad7b43, type: 3}
   optionalFXHasPhysics: 0
   maxExistTime: 5
   optionalImpactExistTime: 5
+  optionalStunner: {fileID: 0}
 --- !u!114 &-791871277710303228
 MonoBehaviour:
   m_ObjectHideFlags: 0

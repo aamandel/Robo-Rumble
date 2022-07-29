@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9053984799961557209}
   - component: {fileID: 109148446091073896}
   - component: {fileID: 1461863918482196198}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DragonFlame
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 1367276561341765485}
   - component: {fileID: 8569113943100748811}
   - component: {fileID: 1818854314850287234}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Flame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4977,7 +4977,7 @@ GameObject:
   - component: {fileID: 4451972100341389834}
   - component: {fileID: 2671568546813525482}
   - component: {fileID: 5081336563610707168}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Flame (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5279571904373152715}
   m_Layer: 3
   m_Name: Grenade
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,6 +136,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 7024095454966869828, guid: 6d86e3837e58f1f4d945d1fb0915658c, type: 3}
   explosionDelay: 3
+  explodeOnAnyImpact: 0
+  timeBeforeUnlockExplode: 0.1
   damageRadius: 2
   damageLayers:
     serializedVersion: 2

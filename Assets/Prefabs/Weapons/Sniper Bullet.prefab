@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 492136895519294794}
   - component: {fileID: 2721213175451486322}
   - component: {fileID: 993287620435540469}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4817,9 +4817,9 @@ GameObject:
   - component: {fileID: 5233857379732374210}
   - component: {fileID: 8390452985583894555}
   - component: {fileID: -8535529119612167750}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sniper Bullet
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4951,7 +4951,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 100
   particles: {fileID: 76635203531557945}
+  particlesDieOnImpact: 0
+  particlesWorldPositionStays: 1
   optionalImpactFX: {fileID: 4531214707885362406, guid: dda5ecb2ccda7fe45a718cbbddad7b43, type: 3}
   optionalFXHasPhysics: 0
   maxExistTime: 5
   optionalImpactExistTime: 5
+  optionalStunner: {fileID: 0}

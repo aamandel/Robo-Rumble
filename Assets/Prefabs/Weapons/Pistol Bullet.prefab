@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7407597377806061723}
   - component: {fileID: 6494075861638550082}
   - component: {fileID: 2874636191632460771}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pistol Bullet
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,10 +147,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 20
   particles: {fileID: 3422511760579911264}
+  particlesDieOnImpact: 0
+  particlesWorldPositionStays: 1
   optionalImpactFX: {fileID: 4531214707885362406, guid: dda5ecb2ccda7fe45a718cbbddad7b43, type: 3}
   optionalFXHasPhysics: 0
   maxExistTime: 5
   optionalImpactExistTime: 5
+  optionalStunner: {fileID: 0}
 --- !u!1 &3422511760579911264
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,7 +165,7 @@ GameObject:
   - component: {fileID: 2934971441247229715}
   - component: {fileID: 841267033077815851}
   - component: {fileID: 2569209906073037740}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7907337834821546753}
   - component: {fileID: 8459806997270369505}
   - component: {fileID: 1652993114123488747}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Flame (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4891,7 +4891,7 @@ GameObject:
   - component: {fileID: 3301740924315992530}
   - component: {fileID: 5906419487523762275}
   - component: {fileID: 4917228931516510189}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FlameThrowerBullet
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -4975,8 +4975,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   particles: {fileID: 3027534536608196197}
-  OptionalImpactFX: {fileID: 0}
+  particlesDieOnImpact: 0
+  particlesWorldPositionStays: 1
+  optionalImpactFX: {fileID: 0}
+  optionalFXHasPhysics: 0
   maxExistTime: 0.4
+  optionalImpactExistTime: 5
+  optionalStunner: {fileID: 0}
 --- !u!1 &8161036120911870527
 GameObject:
   m_ObjectHideFlags: 0
@@ -4988,7 +4993,7 @@ GameObject:
   - component: {fileID: 4795663029255110246}
   - component: {fileID: 2783100801224727808}
   - component: {fileID: 5280974727216715657}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Flame
   m_TagString: Untagged
   m_Icon: {fileID: 0}

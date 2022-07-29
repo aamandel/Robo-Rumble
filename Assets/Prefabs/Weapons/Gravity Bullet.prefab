@@ -4819,6 +4819,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spinSpeed: 90
+  switchesDirections: 0
+  maxTimeBetweenSwitches: 30
 --- !u!1 &5132735558026157442
 GameObject:
   m_ObjectHideFlags: 0
@@ -4834,7 +4836,7 @@ GameObject:
   - component: {fileID: 7151754210372249763}
   m_Layer: 0
   m_Name: Gravity Bullet
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1482985588184766969}
   - component: {fileID: 2423013945573962995}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,9 +151,9 @@ GameObject:
   - component: {fileID: 8220966208451507688}
   - component: {fileID: 2111573298951404125}
   - component: {fileID: 6071126545025177481}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MagicBolt
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -286,10 +286,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 25
   particles: {fileID: 2661739697709324415}
+  particlesDieOnImpact: 0
+  particlesWorldPositionStays: 1
   optionalImpactFX: {fileID: 1196724165121153234, guid: ac9602b5febc00c439edf74b6f8ea417, type: 3}
   optionalFXHasPhysics: 0
   maxExistTime: 5
   optionalImpactExistTime: 5
+  optionalStunner: {fileID: 0}
 --- !u!1 &6585507196442518217
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,7 +304,7 @@ GameObject:
   - component: {fileID: 2620344071580042565}
   - component: {fileID: 4546160672547402314}
   - component: {fileID: 4986086298216937628}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}

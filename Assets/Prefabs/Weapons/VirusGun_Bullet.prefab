@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4640862403878645914}
   - component: {fileID: 4640862403878645913}
   - component: {fileID: 4640862403878645912}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Zeros
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4835,7 +4835,7 @@ GameObject:
   - component: {fileID: 4640862404494641398}
   - component: {fileID: 4640862404494641397}
   - component: {fileID: -9096587600675376004}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: VirusGun_Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5003,7 +5003,7 @@ GameObject:
   - component: {fileID: 4640862405011487891}
   - component: {fileID: 4640862405011487890}
   - component: {fileID: 4640862405011487889}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9825,7 +9825,7 @@ GameObject:
   - component: {fileID: 6880731086504616558}
   - component: {fileID: 113492413044999885}
   - component: {fileID: 2437703870901808007}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
