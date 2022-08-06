@@ -340,8 +340,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trafficScene: 1
-  jungleTempleScene: 1
+  jungleTempleScene: 0
   bananaScene: 0
+  rockCliffScene: 0
   chanceOfBanana: 0.1
 --- !u!1 &652142430
 GameObject:

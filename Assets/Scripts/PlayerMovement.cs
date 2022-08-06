@@ -7,18 +7,22 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
     public float runSpeed = 40f;
-    float horizontalMove = 0f;
+    [HideInInspector]
+    public float horizontalMove = 0f;
     bool jump = false;
     bool crouch = false;
     bool ability1 = false;
+    [HideInInspector]
     public bool doneBoosting;
-    public Animator animator;
     public ParticleSystem dashFX;
     [SerializeField] private LayerMask weaponLayers;
     [SerializeField] private float weaponPickupRadius = 2f;
     public WeaponController weaponController;
     public float interactTimer = 0.5f;
     private bool interactAllowed = true;
+    private bool freeze = false;
+
+    public PlayerAnimationController playerAnimControl;
 
     //raw input
     private Vector2 movementInput = Vector2.zero;
@@ -57,12 +61,28 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         horizontalMove = movementInput.x * runSpeed;
-        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+        if (!controller.m_Grounded)
+        {
+            return;
+        }
+        if(Mathf.Abs(horizontalMove) > 0.01f)
+        {
+            playerAnimControl.Run();
+        }
+        else
+        {
+            playerAnimControl.Idle();
+        }
     }
 
     void FixedUpdate()
     {
         //move character  - horizontalMove * Time.fixedDeltaTime
+        if (freeze)
+        {
+            controller.Move(0f, false, false);
+            return;
+        }
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
         //reset jump
         jump = false;
@@ -71,37 +91,22 @@ public class PlayerMovement : MonoBehaviour
         ability1 = false;
     }
 
-    public void onLanding()
-    {
-        animator.SetBool("IsJumping", false);
-        animator.SetBool("IsDoubleJumping", false);
-    }
 
-    public void OnCrouching(bool state)
-    {
-        animator.SetBool("IsCrouching", state);
-    }
 
     public void OnJump()
     {
-        animator.SetBool("IsJumping", true);
-    }
-
-    public void OnDoubleJump()
-    {
-        animator.SetBool("IsDoubleJumping", true);
+        playerAnimControl.OnJump(horizontalMove);
     }
 
     public void OnDashEnter()
     {
-        animator.SetBool("IsDashing", true);
+        playerAnimControl.OnDashEnter();
         dashFX.Play();
     }
 
     public void OnDashExit()
     {
-        animator.SetBool("IsDashing", false);
-        animator.SetBool("IsDoubleJumping", false);
+        playerAnimControl.OnDashExit(horizontalMove);
         dashFX.Stop();
     }
 
@@ -121,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
                 if (colliders[i].gameObject != weaponController.GetCurrentWeapon())
                 {
                     weaponController.enabled = true;
-                    weaponController.PickupWeapon(colliders[i].gameObject.GetComponent<Weapon>());
+                    weaponController.PickupWeapon(colliders[i].gameObject);
                     return;
                 }
             }
@@ -133,5 +138,21 @@ public class PlayerMovement : MonoBehaviour
     {
         interactAllowed = true;
     }
+
+    public void FreezePlayer()
+    {
+        freeze = true;
+    }
+
+    public void UnfreezePlayer(float delay)
+    {
+        Invoke("UnfreezePlayerNow", delay);
+    }
+
+    public void UnfreezePlayerNow()
+    {
+        freeze = false;
+    }
+
 }
 

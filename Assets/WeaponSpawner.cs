@@ -45,12 +45,13 @@ public class WeaponSpawner : MonoBehaviour
 
     private void Spawn()
     {
-        GameObject weapon = weaponPrefabs[Random.Range(0, weaponPrefabs.Count)];
+        GameObject weapon; 
         if (Random.Range(0f, 1f) < chanceOfEpic)
         {
-            weapon = epicWeaponPrefabs[Random.Range(0, epicWeaponPrefabs.Count)];
+            weapon = Instantiate(epicWeaponPrefabs[Random.Range(0, epicWeaponPrefabs.Count)], spawnPoint.transform.position, Quaternion.identity);
             epicFX.SetActive(true);
+            return;
         }
-        Instantiate(weapon, spawnPoint.transform.position, Quaternion.identity);
+        weapon = Instantiate(weaponPrefabs[Random.Range(0, weaponPrefabs.Count)], spawnPoint.transform.position, Quaternion.identity);
     }
 }

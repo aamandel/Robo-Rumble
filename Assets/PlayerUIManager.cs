@@ -84,7 +84,7 @@ public class PlayerUIManager : MonoBehaviour
         }
         if (WC)
         {
-            weapon = WC.GetWeapon();
+            weapon = WC.GetWeaponScript();
         }
         if (weapon)
         {
@@ -107,7 +107,7 @@ public class PlayerUIManager : MonoBehaviour
         }
         if (WC)
         {
-            weapon = WC.GetWeapon();
+            weapon = WC.GetWeaponScript();
         }
         if (weapon)
         {

@@ -17,6 +17,7 @@ public class Weapon : MonoBehaviour
     private PlayerUIManager playerUI;
     private GameObject owner;
     [HideInInspector] public WeaponController myWeaponController;
+    public bool isMeleeWeapon = false;
 
 
     // get the number of shots currently left
@@ -66,6 +67,13 @@ public class Weapon : MonoBehaviour
         if (BulletScript && owner)
         {
             BulletScript.SetOwner(owner);
+        }
+
+        // if homing missile, set owner
+        HomingMissile missile = Projectile.GetComponent<HomingMissile>();
+        if(missile && owner)
+        {
+            missile.SetOwner(owner);
         }
 
         if (infiniteAmmo)

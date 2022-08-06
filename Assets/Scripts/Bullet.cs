@@ -14,6 +14,8 @@ public class Bullet : MonoBehaviour
     public float optionalImpactExistTime = 5f;
     private bool hitSomething;
     public StunPlayer optionalStunner;
+    private Component[] collidersToIgnore = new Component[0];
+    private GameObject owner;
 
 
     private void Awake()
@@ -24,7 +26,17 @@ public class Bullet : MonoBehaviour
 
     public void SetOwner(GameObject _owner)
     {
-        Component[] collidersToIgnore = _owner.GetComponents<Collider2D>();
+        // first undo any collision ignoring that may already be at play
+        if(collidersToIgnore.Length > 0 && owner != _owner)
+        {
+            foreach (Collider2D c in collidersToIgnore)
+            {
+                Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), c, false);
+            }
+        }
+        // then set owner var and ignore owners colliders
+        owner = _owner;
+        collidersToIgnore = _owner.GetComponents<Collider2D>();
         foreach (Collider2D c in collidersToIgnore)
         {
             Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), c);

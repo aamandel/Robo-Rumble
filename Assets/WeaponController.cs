@@ -5,16 +5,19 @@ using UnityEngine.InputSystem;
 
 public class WeaponController : MonoBehaviour
 {
-    public GameObject weaponArm;
+    public GameObject gunArm, swordArm;
     public float handleOffset = 0.75f;
     private Camera cam;
     private Vector2 aimInput = Vector2.zero;
-    private Weapon currWeapon = null;
+    private GameObject currWeapon = null;
+    private Weapon weaponScript = null;
     private bool isMouse;
     private bool isFiring = false;
     private Vector3 targetDirection = Vector3.zero;
     private Vector3 mouseWorldPosition = Vector3.zero;
     public Animator animator;
+    public PlayerAnimationController playerAnimControl;
+    public PlayerMovement playerMovement;
     public Transform punchPoint;
     public LayerMask meleeLayers;
     public float meleeDamage;
@@ -40,38 +43,56 @@ public class WeaponController : MonoBehaviour
         cam = newCam;
     }
 
-    public void PickupWeapon(Weapon weapon)
+    public void PickupWeapon(GameObject weapon)
     {
+
         if (weapon == currWeapon)
         {
             return;
         }
         if (currWeapon)
         {
-            currWeapon.transform.SetParent(null);
-            currWeapon.transform.rotation = Quaternion.identity;
-            currWeapon.transform.localScale = new Vector3(currWeapon.transform.localScale.x, currWeapon.transform.localScale.x, 1);
+            DropWeapon();
         }
         currWeapon = weapon;
-        currWeapon.SetOwner(gameObject);
+        
+        weaponScript = currWeapon.GetComponent<Weapon>();
+        weaponScript.SetOwner(gameObject);
 
-        currWeapon.gameObject.transform.SetParent(weaponArm.transform);
-        currWeapon.transform.localPosition = (-currWeapon.GetHandlePoint().localPosition)*currWeapon.transform.localScale.x  + new Vector3(handleOffset, 0, 0);
+        if (weaponScript.isMeleeWeapon)
+        {
+            currWeapon.transform.SetParent(swordArm.transform);
+            Sword _sword = currWeapon.gameObject.GetComponent<Sword>();
+            if (_sword)
+            {
+                _sword.SetOwner(gameObject);
+            }
+        }
+        else
+        {
+            currWeapon.transform.SetParent(gunArm.transform);
+        }
+        
+        currWeapon.transform.localPosition = (-weaponScript.GetHandlePoint().localPosition)*currWeapon.transform.localScale.x  + new Vector3(handleOffset, 0, 0);
         currWeapon.transform.localRotation = Quaternion.identity;
         currWeapon.transform.localScale = new Vector3(Mathf.Abs(currWeapon.transform.localScale.x), Mathf.Abs(currWeapon.transform.localScale.y), 1);
-        currWeapon.myWeaponController = this;
+        weaponScript.myWeaponController = this;
         // update ui
         StaticData.playerUI.SetUI();
     }
 
     public void DropWeapon()
     {
-        if (currWeapon)
+        if (!currWeapon) { return; }
+        if (weaponScript.isMeleeWeapon)
         {
-            currWeapon.transform.SetParent(null);
-            currWeapon.transform.rotation = Quaternion.identity;
-            currWeapon.transform.localScale = new Vector3(currWeapon.transform.localScale.x, currWeapon.transform.localScale.x, 1);
+            weaponScript.GetComponent<Sword>().SetOwner(null);
         }
+        weaponScript.SetOwner(null);
+        currWeapon.transform.SetParent(null);
+        currWeapon.transform.rotation = Quaternion.identity;
+        currWeapon.transform.localScale = new Vector3(currWeapon.transform.localScale.x, currWeapon.transform.localScale.x, 1);
+        weaponScript = null;
         currWeapon = null;
     }
 
@@ -84,15 +105,16 @@ public class WeaponController : MonoBehaviour
     // LateUpdate is called once per frame right after Update
     void LateUpdate()
     {
-        if(weaponArm.transform.localScale.y < 0)
+        
+        if(gunArm.transform.localScale.y < 0)
         {
-            weaponArm.transform.localScale += new Vector3(0, 2, 0);
+            gunArm.transform.localScale += new Vector3(0, 2, 0);
         }
         if (isMouse)
         {
             Vector2 mouseScreenPosition = aimInput;
             mouseWorldPosition = cam.ScreenToWorldPoint(new Vector3(mouseScreenPosition.x, mouseScreenPosition.y, 10));
-            targetDirection = mouseWorldPosition - weaponArm.transform.position;
+            targetDirection = mouseWorldPosition - gunArm.transform.position;
         }
         else if(aimInput.magnitude > 0.05f)
         {
@@ -101,22 +123,35 @@ public class WeaponController : MonoBehaviour
         }
         if (!currWeapon)
         {
-            if (isFiring && !animator.GetBool("IsJumping") && !animator.GetBool("IsDoubleJumping"))
+            if (isFiring)
+            {
+                playerAnimControl.Melee(playerMovement.horizontalMove);
+            }
+            
+            /*if (isFiring && !animator.GetBool("IsJumping") && !animator.GetBool("IsDoubleJumping"))
             {
                 animator.SetBool("IsMeleeing", true);
+            }*/
+            return;
+        }
+        if (weaponScript.isMeleeWeapon)
+        {
+            if (isFiring)
+            {
+                playerAnimControl.SwingSword();
             }
             return;
         }
         float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
-        weaponArm.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
+        gunArm.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
 
-        if ((angle < -90f || angle > 90f) && weaponArm.transform.localScale.y == 1)
+        if ((angle < -90f || angle > 90f) && gunArm.transform.localScale.y == 1)
         {
-            weaponArm.transform.localScale += new Vector3(0, -2, 0);
+            gunArm.transform.localScale += new Vector3(0, -2, 0);
         }
-        else if((angle > -90f || angle < 90f) && weaponArm.transform.localScale.y == -1)
+        else if((angle > -90f || angle < 90f) && gunArm.transform.localScale.y == -1)
         {
-            weaponArm.transform.localScale += new Vector3(0, 2, 0);
+            gunArm.transform.localScale += new Vector3(0, 2, 0);
         }
 
         LaserSight LS = currWeapon.gameObject.GetComponent<LaserSight>();
@@ -127,7 +162,7 @@ public class WeaponController : MonoBehaviour
 
         if (isFiring)
         {
-            currWeapon.Shoot();
+            weaponScript.Shoot();
         }
     }
 
@@ -149,9 +184,9 @@ public class WeaponController : MonoBehaviour
         return mouseWorldPosition;
     }
 
-    public Weapon GetWeapon()
+    public Weapon GetWeaponScript()
     {
-        return currWeapon;
+        return weaponScript;
     }
 
     public void WeaponDestroyed()
@@ -182,7 +217,25 @@ public class WeaponController : MonoBehaviour
                 break;
             }
         }
-        animator.SetBool("IsMeleeing", false);
     }
 
+    public void SwordDamage()
+    {
+        Sword _sword = currWeapon.GetComponent<Sword>();
+        _sword.DoDamage();
+    }
+
+    public void OnCrouching(bool state)
+    {
+        if (!weaponScript || !weaponScript.isMeleeWeapon) { return; }
+        Sword _sword = currWeapon.gameObject.GetComponent<Sword>();
+        if (state)
+        {
+            _sword.StartBlocking();
+        }
+        else
+        {
+            _sword.StopBlocking();
+        }
+    }
 }

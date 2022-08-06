@@ -5198,9 +5198,12 @@ MonoBehaviour:
   - {fileID: 3032456856865133062, guid: 7388f06db68a9da40a7624f5f0a0b87b, type: 3}
   - {fileID: 6498800808993586349, guid: ae45ae3b5b577a043ba51110948ee2b0, type: 3}
   - {fileID: 1636790182628868449, guid: a8248c7078f3dc045851ab947deecf65, type: 3}
+  - {fileID: 5591358057549812496, guid: 570858d63906e8f4398def6da2eb465d, type: 3}
+  - {fileID: 8019482122275145954, guid: e124dd7d701cf544dbc00f3e5f32b717, type: 3}
   epicWeaponPrefabs:
   - {fileID: 9222679841204978761, guid: d271e8658d8a36f48b819d82c01445a2, type: 3}
   - {fileID: 6397003635176806654, guid: 02e16c13122631f479586ff9a6fe8c34, type: 3}
+  - {fileID: 3330314598082776152, guid: b7d18bce26bb541498c3a3ccb2330d12, type: 3}
   epicFX: {fileID: 4472191839603112627}
   chanceOfEpic: 0.03
   weaponLayers:

@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Banana.unity
     guid: 6efbf4fd42db70b408f2b775543c1a26
+  - enabled: 1
+    path: Assets/Scenes/Rock Cliffs.unity
+    guid: 7885cdf6bb9b5cf479053bc7badaf003
   m_configObjects: {}

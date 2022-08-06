@@ -22,7 +22,7 @@ Material:
     m_Floats:
     - _HorizonLineContribution: 0
     - _HorizonLineExponent: 1
-    - _SkyGradientExponent: 4
+    - _SkyGradientExponent: 3.73
     - _SunDiscContribution: 1
     - _SunDiscExponent: 100000
     - _SunDiscMultiplier: 1000

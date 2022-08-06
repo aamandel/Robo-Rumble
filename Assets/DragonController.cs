@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DragonController : MonoBehaviour
 {
@@ -30,22 +31,36 @@ public class DragonController : MonoBehaviour
     public float maxResetDist = 70f;
     public float minResetDist = 40f;
 
+    private float boneStartHeight = 5f;
+    private float timeElapsed;
+
     private void Start()
     {
+        rootBone.transform.position = new Vector3(rootBone.transform.position.x, boneStartHeight, 0);
         prevPos = rootBone.transform.position;
         facingRight = true;
+        timeElapsed = 0f;
     }
+    private void Awake()
+    {
+        rootBone.transform.position = new Vector3(rootBone.transform.position.x, boneStartHeight, 0);
+        prevPos = rootBone.transform.position;
+        facingRight = true;
+        timeElapsed = 0f;
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
+        timeElapsed += Time.fixedDeltaTime;
         if (facingRight)
         {
-            rootBone.transform.position += transform.up * Mathf.Sin(Time.time * verticalFlySpeed) * magnitude + (transform.right * flySpeed);
+            rootBone.transform.position += transform.up * Mathf.Sin(timeElapsed * verticalFlySpeed) * magnitude + (transform.right * flySpeed);
             rootBone.transform.right = (prevPos - rootBone.transform.position).normalized;
         }
         else
         {
-            rootBone.transform.position += transform.up * Mathf.Sin(Time.time * verticalFlySpeed) * magnitude - (transform.right * flySpeed);
+            rootBone.transform.position += transform.up * Mathf.Sin(timeElapsed * verticalFlySpeed) * magnitude - (transform.right * flySpeed);
             rootBone.transform.right = -(prevPos - rootBone.transform.position).normalized;
         }
         
